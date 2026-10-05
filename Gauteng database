@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>SA TeachingPost AI</title>
+
+  <meta name="description"
+        content="Search South African teaching vacancies across all 9 provinces.">
+
+  <meta name="theme-color" content="#111827">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f7fb;
+      color: #111827;
+    }
+
+    header {
+      background: #111827;
+      color: white;
+      padding: 18px 20px;
+    }
+
+    .brand {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .tagline {
+      margin-top: 5px;
+      color: #d1d5db;
+      font-size: 14px;
+    }
+
+    .hero {
+      background: white;
+      padding: 35px 20px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 40px;
+      margin: 0 auto 15px;
+      max-width: 700px;
+    }
+
+    .hero p {
+      font-size: 17px;
+      color: #4b5563;
+      max-width: 650px;
+      margin: auto;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .search-box {
+      background: white;
+      padding: 20px;
+      border-radius: 14px;
+      box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+    }
+
+    .search-box h2 {
+      margin-top: 0;
+    }
+
+    .filters {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    select,
+    input,
+    button {
+      width: 100%;
+      padding: 13px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: 1px solid #d1d5db;
+    }
+
+    button {
+      background: #111827;
+      color: white;
+      cursor: pointer;
+      border: none;
+      font-weight: bold;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin: 20px 0;
+    }
+
+    .stat {
+      background: white;
+      padding: 18px;
+      text-align: center;
+      border-radius: 12px;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 25px;
+    }
+
+    .source {
+      background: white;
+      margin-top: 20px;
+      padding: 20px;
+      border-radius: 14px;
+    }
+
+    .source h2 {
+      margin-top: 0;
+    }
+
+    .source-button {
+      display: inline-block;
+      background: #111827;
+      color: white;
+      text-decoration: none;
+      padding: 12px 16px;
+      border-radius: 8px;
+      margin-top: 10px;
+    }
+
+    .results {
+      margin-top: 25px;
+    }
+
+    .job {
+      background: white;
+      padding: 18px;
+      margin-bottom: 12px;
+      border-radius: 12px;
+      border-left: 5px solid #111827;
+    }
+
+    .job h3 {
+      margin-top: 0;
+    }
+
+    .job p {
+      margin: 7px 0;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #e5e7eb;
+      padding: 5px 8px;
+      border-radius: 6px;
+      font-size: 13px;
+      margin-right: 5px;
+    }
+
+    footer {
+      margin-top: 40px;
+      background: #111827;
+      color: white;
+      text-align: center;
+      padding: 25px;
+      font-size: 14px;
+    }
+
+    @media (min-width: 700px) {
+      .filters {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .filters button {
+        grid-column: span 2;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="brand">🎓 SA TeachingPost AI</div>
+  <div class="tagline">South Africa · All 9 Provinces</div>
+</header>
+
+<section class="hero">
+  <h1>Your next teaching opportunity starts here.</h1>
+
+  <p>
+    Search teaching vacancies, check closing dates,
+    and open the original advertisement.
+  </p>
+</section>
+
+<main class="container">
+
+  <section class="search-box">
+
+    <h2>Find teaching posts</h2>
+
+    <div class="filters">
+
+      <select id="province">
+        <option value="">All provinces</option>
+        <option>Gauteng</option>
+        <option>Limpopo</option>
+        <option>Mpumalanga</option>
+        <option>North West</option>
+        <option>KwaZulu-Natal</option>
+        <option>Eastern Cape</option>
+        <option>Western Cape</option>
+        <option>Free State</option>
+        <option>Northern Cape</option>
+      </select>
+
+      <select id="employment">
+        <option value="">All employment types</option>
+        <option>Permanent</option>
+        <option>Temporary</option>
+        <option>Substitute</option>
+        <option>SGB</option>
+        <option>Contract</option>
+      </select>
+
+      <input
+        id="phase"
+        type="text"
+        placeholder="Phase / subject e.g. Intermediate Phase">
+
+      <input
+        id="keyword"
+        type="text"
+        placeholder="School, district or post">
+
+      <button onclick="searchJobs()">
+        Search vacancies
+      </button>
+
+    </div>
+
+  </section>
+
+  <section class="stats">
+
+    <div class="stat">
+      <strong>9</strong>
+      Provinces
+    </div>
+
+    <div class="stat">
+      <strong>1</strong>
+      Search platform
+    </div>
+
+    <div class="stat">
+      <strong>FREE</strong>
+      To get started
+    </div>
+
+  </section>
+
+  <section class="source">
+
+    <h2>🇿🇦 Gauteng vacancy source</h2>
+
+    <p>
+      Gauteng Department of Education's official
+      Unemployed Educators vacancy database.
+    </p>
+
+    <p>
+      You can view available Gauteng educator vacancies,
+      including school, district, phase, learning area,
+      reference number and closing date.
+    </p>
+
+    <a
+      class="source-button"
+      href="https://unemployededucators.gauteng.gov.za/Vacancy/Vacancy"
+      target="_blank"
+      rel="noopener noreferrer">
+      Open Gauteng vacancies
+    </a>
+
+  </section>
+
+  <section class="results">
+
+    <h2>Latest vacancy examples</h2>
+
+    <div id="results">
+
+      <div class="job">
+
+        <h3>Gauteng Department of Education</h3>
+
+        <p>
+          <span class="badge">Gauteng</span>
+          <span class="badge">Verified source</span>
+        </p>
+
+        <p>
+          Search the official Gauteng database for
+          current educator vacancies.
+        </p>
+
+        <a
+          class="source-button"
+          href="https://unemployededucators.gauteng.gov.za/Vacancy/Vacancy"
+          target="_blank"
+          rel="noopener noreferrer">
+          View official vacancies
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</main>
+
+<footer>
+
+  © 2026 SA TeachingPost AI<br>
+  Teaching vacancies across South Africa
+
+</footer>
+
+<script>
+
+function searchJobs() {
+
+  const province =
+    document.getElementById("province").value;
+
+  const phase =
+    document.getElementById("phase").value.toLowerCase();
+
+  const keyword =
+    document.getElementById("keyword").value.toLowerCase();
+
+  const results =
+    document.getElementById("results");
+
+  if (province === "Gauteng") {
+
+    results.innerHTML = `
+
+      <div class="job">
+
+        <h3>Gauteng Department of Education</h3>
+
+        <p>
+          Official Gauteng educator vacancy database.
+        </p>
+
+        <p>
+          Search by school, district, phase and learning area.
+        </p>
+
+        <a
+          class="source-button"
+          href="https://unemployededucators.gauteng.gov.za/Vacancy/Vacancy"
+          target="_blank"
+          rel="noopener noreferrer">
+          Open Gauteng vacancies
+        </a>
+
+      </div>
+
+    `;
+
+    return;
+  }
+
+  results.innerHTML = `
+
+    <div class="job">
+
+      <h3>More provincial sources coming soon</h3>
+
+      <p>
+        We are connecting verified vacancy sources
+        province by province.
+      </p>
+
+      <p>
+        Your search:
+        ${province || "All provinces"}
+        ${phase ? " · " + phase : ""}
+        ${keyword ? " · " + keyword : ""}
+      </p>
+
+    </div>
+
+  `;
+}
+
+</script>
+
+</body>
+  </html>
